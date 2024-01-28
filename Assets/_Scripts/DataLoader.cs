@@ -22,9 +22,8 @@ public class DataLoader : MonoBehaviour
             if (webRequest.result == UnityWebRequest.Result.Success)
             {
                 string jsonText = webRequest.downloadHandler.text;
-                // Now you have the JSON data in the 'jsonText' variable.
-
-                // Call a method to handle the JSON data (e.g., parse it and process it).
+                // JSON data in the 'jsonText' variable.
+                
                 HandleJSONData(jsonText);
             }
             else
@@ -40,8 +39,6 @@ public class DataLoader : MonoBehaviour
         string filePath = Path.Combine(Application.persistentDataPath, "data.json");
         File.WriteAllText(filePath, jsonText);
 
-        // Optionally, you can also download and save other files here.
-
         Debug.Log("Data saved to: " + filePath);
     }
 
@@ -56,6 +53,19 @@ public class DataLoader : MonoBehaviour
 
         Debug.LogError("JSON file not found at: " + filePath);
         return null;
+    }
+
+    public LanguageData[] GetLanguages()
+    {
+        // Logic to get language data from your JSON or wherever it's stored
+        // Return an array of LanguageData
+        return new LanguageData[]
+        {
+            new LanguageData { LanguageId = 1, LanguageName = "Hrvatski" },
+            new LanguageData { LanguageId = 2, LanguageName = "English" },
+            new LanguageData { LanguageId = 3, LanguageName = "Deutsch" },
+            // Add more languages as needed
+        };
     }
 }
 
